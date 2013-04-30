@@ -1,0 +1,27 @@
+@include url('http://yui.yahooapis.com/3.5.0/build/cssreset/cssreset-min.css');
+@include url('http://yui.yahooapis.com/3.5.0/build/cssbase/cssbase-min.css');
+@include url('http://yui.yahooapis.com/3.5.0/build/cssfonts/cssfonts-min.css');
+
+body {
+    background-color: #f0f0f2;
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+#container {
+    width: 600px;
+    margin: 5em auto;
+    padding: 3em;
+    background-color: #fff;
+    border-radius: 1em;
+}
+@media (max-width: 600px) {
+     body {
+         background-color: #fff;
+     }
+     div {
+         width: auto;
+         margin: 0 auto;
+     }
+ }
