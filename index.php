@@ -19,20 +19,38 @@
 <?php
 require_once 'prime_factorization.php';
 
+define('ENCODING', 'UTF-8', true);
+
 $givenNumber = $_POST['given-number'];
 
-if (isset($givenNumber) && $givenNumber) {
-    if (!is_numeric($givenNumber)) {
+if (isset($givenNumber) ) {
+    if (!mb_check_encoding($givenNumber, constant('ENCODING'))) {
+        echo '<p class="error_msg">Invalid character encoding given.</p>';
+    } elseif (empty($givenNumber)) {
+        echo '<p class="error_msg">No number given.</p>';
+    } elseif (!is_numeric($givenNumber)) {
         echo '<p class="error_msg">Set the numeric number.</p>';
-    } elseif (is_infinite($givenNumber)) {
-        echo '<p class="error_msg">Oh, PHP cannot handle such a huge number...</p>';
+    } elseif (PHP_INT_MAX < $givenNumber) {
+        echo '<p class="error_msg">Oh, cannot handle such a huge number accurately...</p>';
     } else {
-        $pf = new PrimeFactorization($givenNumber);
-        $resultList = $pf->getResultList();
+        set_time_limit(200);
+        $time_start = microtime(true);
+
+        $pf = new PrimeFactorization();
+        $resultList = $pf->getResultList( (int) $givenNumber);
         $viewList   = $pf->getFormattedList($resultList);
 
-        echo '<p>' . $givenNumber . ' = ' . implode(' * ', $viewList) . '</p>';
+        echo '<p>' . escape($givenNumber) . ' = ' . escape(implode(' * ', $viewList)) . '</p>';
+
+        $time_end = microtime(true);
+        $time = $time_end - $time_start;
+
+        echo "Did nothing in $time seconds\n";
     }
+}
+
+function escape($str) {
+    return htmlspecialchars($str, ENT_QUOTES, constant('ENCODING'));
 }
 ?>
 </div>

@@ -3,17 +3,10 @@
  *
  *
  */
-//9223372036854775807
+// 9223372036854775807
 class PrimeFactorization {
 
-    private $_number;
-
-    public function __construct($givenNumber) {
-        $this->_number = $givenNumber;
-    }
-
-    public function getResultList() {
-        $givenNumber = $this->_number;
+    public function getResultList($givenNumber) {
         $i = 2;
 
         do {
@@ -22,8 +15,10 @@ class PrimeFactorization {
             if ($remainder === 0) {
                 ++$answer[$i];
                 $givenNumber /= $i;
-            } else {
+            } elseif ($i % 2 === 0) {
                 ++$i;
+            } else {
+                $i += 2;
             }
 
         } while ($givenNumber !== 1);
