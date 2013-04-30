@@ -12,7 +12,7 @@
 <div id="container">
 <h1>Prime Factorization</h1>
 <form action="index.php" method="post" accept-charset="UTF-8">
-<input type="number" name="given-number" placeholder="Give an natural number" required autofocus/>
+<input type="number" name="given-number" placeholder="Give an natural number" min="2" required autofocus/>
 <input type="submit" />
 </form><br />
 <hr />
@@ -38,7 +38,7 @@ if (isset($givenNumber) ) {
         $time_end = microtime(true);
         $time = $time_end - $time_start;
 
-        echo "<p>It took $time seconds</p>";
+        echo "<p>It took <b>{$time}</b> seconds</p>";
     }
 }
 
