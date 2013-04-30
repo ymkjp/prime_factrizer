@@ -4,6 +4,7 @@
  *
  */
 // 9223372036854775807
+// 2147483647
 class PrimeFactorization {
 
     public function getResultList($givenNumber) {
@@ -15,10 +16,10 @@ class PrimeFactorization {
             if ($remainder === 0) {
                 ++$answer[$i];
                 $givenNumber /= $i;
-            } elseif ($i % 2 === 0) {
-                ++$i;
-            } else {
+            } elseif ($i !== 2) {
                 $i += 2;
+            } else {
+                ++$i;
             }
 
         } while ($givenNumber !== 1);
