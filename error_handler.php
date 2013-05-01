@@ -21,8 +21,6 @@ function hasNoError($givenNumber) {
         echo ERR_NOT_NUM;
     } elseif (0 > (int) $givenNumber) {
         echo escape($givenNumber) . ERR_MINUS;
-    } elseif (PHP_INT_MAX < $givenNumber) {
-        echo ERR_TOO_BIG;
     } elseif (is_float($givenNumber + 0)) {
         echo ERR_TOO_BIG;
     } else {

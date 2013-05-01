@@ -1,8 +1,4 @@
 <?php
-/*
- *
- *
- */
 // 9223372036854775807
 // 2147483647
 class PrimeFactorization {

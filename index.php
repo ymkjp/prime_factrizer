@@ -12,7 +12,7 @@
 <div id="container">
 <h1>Prime Factorization</h1>
 <form action="index.php" method="post" accept-charset="UTF-8">
-<input type="number" name="given-number" placeholder="Give an natural number" min="2" required autofocus/>
+<input type="number" name="given-number" placeholder="Give an natural number" min="1" required autofocus/>
 <input type="submit" />
 </form><br />
 <hr />
@@ -25,21 +25,21 @@ define('ENCODING', 'UTF-8', true);
 $givenNumber = $_POST['given-number'];
 
 if (isset($givenNumber) ) {
-    if (hasNoError($givenNumber)) {
-        set_time_limit(200);
-        $time_start = microtime(true);
+    set_time_limit(200);
+    $time_start = microtime(true);
 
+    if (hasNoError($givenNumber)) {
         $pf = new PrimeFactorization();
         $resultList = $pf->getResultList( (int) $givenNumber);
         $viewList   = $pf->getFormattedList($resultList);
 
         echo '<p class="result">' . escape($givenNumber) . ' = ' . escape(implode(' * ', $viewList)) . '</p>';
-
-        $time_end = microtime(true);
-        $time = $time_end - $time_start;
-
-        echo "<p>It took <b>{$time}</b> seconds</p>";
     }
+
+    $time_end = microtime(true);
+    $time = $time_end - $time_start;
+
+    echo "<p>It took <b>{$time}</b> seconds</p>";
 }
 
 function escape($str) {
